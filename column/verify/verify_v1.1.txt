@@ -1,0 +1,37 @@
+Column sketch ROM (sunflower / peonies / three girls) - verification (2026-09-29 08:24 CEST)
+ROM: column/sketch_column_s7.rom  262144 bytes (256KB, 16x16KB pages, ASCII16); bank mapping OK (build check)
+sha256 4e01b1b4b9a3d7237ebfa0ec27ad5722a7bcb469752bc94b15ebc8af2a8dd70a
+Source: column/source.jpg sha256 8b83c0f1344c51134266f25b2598670f37bb9632696657c60ced3fe436a97329; crop x402-614 y12-1003 -> 512 cols x 1196 rows (true display aspect: S7 pixels are 2:1 tall)
+Palette slot (R,G,B 0-7): 0 black, 1 (7,7,7), 2 stems (4,4,4), 3 (6,6,6), 4 (5,5,5), 5 (4,4,4), 7 (3,3,3), 8 (2,3,3), 9 (2,2,2)
+
+Long run openMSX C-BIOS_MSX2, 3100 scroll steps (2 full passes):
+DONE dumps=3100 tot=3100 t=247.880 frames~14857 isr=13950 ovr=0
+max skip 0
+s7: dumps=3100 tot=1..3100 contiguous=True
+  A top rows 1..15 ink pixels      = 0 (frames 0)
+  B hidden band 212..255 ink pixels = 0 (frames 0)
+  C band=[15,150) cap_row=151; new ink outside band       = 0; ink erased outside clear zone = 0 (frames 0)
+  D nibble values present           = [0, 1, 2, 3, 4, 5, 7, 8, 9]  allowed = [0, 1, 2, 3, 4, 5, 7, 8, 9]  ok = True
+  RESULT PASS
+pictures start at tots [0, 1439, 2878]; alignment strip row = start + 48 + local_y ; ref ink=28576
+  picture 1 @tot 0: ink=28576 recall=100.0000% precision=100.0000% extra=0 missing=0 colour-mismatch=0 exact=True
+  picture 2 @tot 1439: ink=28576 recall=100.0000% precision=100.0000% extra=0 missing=0 colour-mismatch=0 exact=True
+  picture 3 @tot 2878: incomplete in run
+== final: steps=3100 seconds/scroll-line=0.0751 (= 4.500 frames)
+  girl 1 @tot 0: figure done tot 1240 (+93.13s) last stroke rows 24..24 -> runway 14.12s | per-line runway min 6.24s median 8.03s | lowest drawing row fig 128 (99%: 112) stem 47
+  girl 2 @tot 1439: figure done tot 1240 (+93.11s) last stroke rows 24..24 -> runway 14.12s | per-line runway min 6.37s median 8.03s | lowest drawing row fig 126 (99%: 112) stem 47
+
+Intro (intro/intro.asm):
+frame period after first: mean 16.688155 ms min 16.688 max 16.689
+R#23 values during intro: [0]  R#1: [96]
+black lead: display on/first ISR 5.690 -> first non-black 6.190 = 0.501 s
+fade-in : 1.0013 s (60 frames) first non-black idx 31 -> first full idx 91
+hold    : 5.0064 s (300 frames at full white)
+fade-out: 1.0013 s (60 frames) until all-black
+last intro ISR 13.350, engine first ISR 15.097 (black gap incl. VRAM clear 1.897 s after fade-out end 13.199)
+intro enter INTRO_ENTER t=5.532529 r23=0
+
+Pass = 1439 scroll lines x 4.5 frames = 108.1 s; figure drawn in ~93 s of each pass
+
+Ink share in the drawn picture (VRAM, 28576 px): grey7 (7,7,7) 9051 31.7% | grey6 5030 17.6% | grey5 6492 22.7% | grey4 3731 13.1% | grey3 3738 13.1% | slate (2,3,3) 405 1.4% | grey (2,2,2) 129 0.45%
+Eyes: 6 eye ellipses drawn from the source ink at screen resolution (1429 px, grey7, never pruned)

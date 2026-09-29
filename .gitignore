@@ -1,0 +1,11 @@
+# build outputs (rebuild with column/build_col.py) and emulator dumps
+column/sketch_column_s7.asm
+column/sketch_column_s7.sym
+column/sketch_column_s7.lst
+column/sketch_column_s7.rom
+column/trace_ref.npy
+column/dbgwin.png
+column/verify/out/
+column/verify/clipframes/
+__pycache__/
+*.mp4

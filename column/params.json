@@ -1,0 +1,221 @@
+{
+ "crop": [
+  402,
+  614,
+  12,
+  1003
+ ],
+ "W": 512,
+ "par": 2.0,
+ "thr": 150,
+ "merge_r": 1,
+ "blob_r": 8,
+ "blob_min": 60,
+ "min_len": 6,
+ "spur": 6,
+ "join_cos": 0.35,
+ "sig_line": 2.4,
+ "sig_blob": 1.2,
+ "wobble_amp": 0.3,
+ "wobble_corr": 10,
+ "dp_tol": 0.6,
+ "min_run": 2,
+ "fresh_frac": 0.55,
+ "occ_r": [
+  1,
+  1
+ ],
+ "occ_layer": {},
+ "sil_d": 5,
+ "long7": 45,
+ "short": 10,
+ "zones": {
+  "sunflower": {
+   "ellipse": [
+    505,
+    118,
+    105,
+    108
+   ]
+  },
+  "sfcentre": {
+   "ellipse": [
+    505,
+    118,
+    30,
+    30
+   ]
+  },
+  "peony": {
+   "box": [
+    420,
+    215,
+    615,
+    372
+   ]
+  },
+  "head1": {
+   "ellipse": [
+    512,
+    424,
+    78,
+    62
+   ]
+  },
+  "face1": {
+   "ellipse": [
+    516,
+    446,
+    46,
+    36
+   ]
+  },
+  "head2": {
+   "ellipse": [
+    512,
+    558,
+    60,
+    62
+   ]
+  },
+  "face2": {
+   "ellipse": [
+    511,
+    576,
+    42,
+    36
+   ]
+  },
+  "head3": {
+   "ellipse": [
+    496,
+    670,
+    66,
+    58
+   ]
+  },
+  "face3": {
+   "ellipse": [
+    498,
+    688,
+    42,
+    34
+   ]
+  }
+ },
+ "tones": {
+  "sil_flower": 7,
+  "sil_head": 7,
+  "sil_cloth": 6,
+  "face_long": 7,
+  "face_blob": 7,
+  "face_mid": 7,
+  "face_short": 6,
+  "hair_long": 7,
+  "hair_mid": 5,
+  "hair_short": 3,
+  "hair_blob": 5,
+  "sunflower_long": 5,
+  "sunflower_mid": 4,
+  "sunflower_short": 2,
+  "sfcentre_long": 3,
+  "sfcentre_mid": 2,
+  "sfcentre_short": 1,
+  "sfcentre_blob": 2,
+  "peony_long": 6,
+  "peony_mid": 3,
+  "peony_short": 2,
+  "cloth_long": 4,
+  "cloth_mid": 3,
+  "cloth_short": 2,
+  "cloth_blob": 3,
+  "sparkle": 1
+ },
+ "slot": {
+  "7": 1,
+  "6": 3,
+  "5": 4,
+  "4": 5,
+  "3": 7,
+  "2": 8,
+  "1": 9
+ },
+ "layer_weight": {
+  "line": 1.0,
+  "blob": 1.6,
+  "eye": 2.0
+ },
+ "tone_weight": {
+  "7": 1.6,
+  "6": 1.2,
+  "5": 1.0,
+  "4": 0.9,
+  "3": 0.8,
+  "2": 0.7,
+  "1": 0.7
+ },
+ "face_weight": 3.0,
+ "priority": [
+  "eye",
+  "blob",
+  "line"
+ ],
+ "max100": 58,
+ "max40": 72,
+ "lane_a": 12.8,
+ "lane_b": 0.08,
+ "chunk_len": 18,
+ "share_target": [
+  0.25,
+  0.45,
+  0.3
+ ],
+ "share_k": 2,
+ "white_delay_w": 1,
+ "sig_face": 1.2,
+ "eyes": [
+  [
+   498,
+   427,
+   7,
+   10
+  ],
+  [
+   537,
+   425,
+   7,
+   10
+  ],
+  [
+   488,
+   562,
+   7,
+   10
+  ],
+  [
+   531,
+   567,
+   7,
+   10
+  ],
+  [
+   484,
+   670,
+   7,
+   10
+  ],
+  [
+   523,
+   672,
+   7,
+   10
+  ]
+ ],
+ "eye_thr": 100,
+ "eye_tone": 7,
+ "long_hair": 100,
+ "long_cloth": 110,
+ "long_face": 20,
+ "long_sunflower": 40,
+ "long_peony": 40
+}
