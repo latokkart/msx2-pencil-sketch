@@ -1,0 +1,36 @@
+img5_music — MSX-MUSIC background music for the column ROM (verification, 2026-09-29, times CEST)
+(File paths below are from the development tree: img5_music/ = music/ here; the ROM is rom/sketch_music_s7.rom.)
+
+ROM  sketch_music_s7.rom  262144 B (256KB ASCII16)  sha256 7cd1ae5d540f8aff847b132c802ef86fb49d54868cfd5f40d0b5f511a8903dbe
+     differs from v1.1 (img4_column/sketch_column_s7.rom) only in page 0 (code) and page 5 (replayer + song).
+
+Song  song.mbm (1704 B) MoonBlaster 1.4 USER song "Song in B - Anne de Raad 2019"
+      31 positions, loop to 0, tempo 7 (7 frames/step), 496 steps/loop = 3472 frames = 57.94 s @60 Hz
+      mode 6 FM + MSX-MUSIC rhythm (R#0Eh). Chip map ch1-6 MSX-MUSIC, ch7-9 MSX-AUDIO (no events), ch10 both.
+      Drums: OPLL rhythm only — BD / HH / CYM (sets 1,5,4); drum set-up bytes all < 20h => no PSG drums.
+
+Replayer  MoonBlaster 1.4 dev package sources/replayer/mbplay.src (with BiFi's MSX compatibility fixes), used as-is;
+      adapt_mbplay.py applies 12 asserted ROM-integration edits only (headers/ORG, mapper FEh paging, H.TIMI install/restore,
+      MSX-AUDIO voice init call, mm2out/mm3out/mmrout -> ret, leading DI). Runs from RAM D000h, song at E000h.
+      License: readme (Remco Schrijvers/MoonSoft, 1997): sources may be used for new PD music programs; 2012-07-01 note:
+      "Restrictions on using the sources to create new music programs or extend MoonBlaster ... removed". No formal OSS
+      licence and no explicit statement about embedding the replayer in other software.
+
+Pacing  intro: tick in intro ISR / H.TIMI (during 128KB clear); sketch: VDP line interrupt (IE1, R#19 = 180 + R#23),
+      H.KEYI flags it, main loop runs one tick per line IRQ (fallback if >=2 VBLANKs owed). Drawing ISR untouched in cost.
+
+Results
+  write stream vs libkss (MB 1.43 replayer): FM-PAC 5000/5000 frames identical (17905 writes), MSX2+ internal 3400/3400.
+  no PSG / C0h-C1h writes by the ROM (PSG only by C-BIOS boot at 0.097 s); no FM: 0 OPLL writes, audio peak 0.
+  key-ons 970, all in B major, tuning mean 3.1 / max 9.8 cents; rhythm BD 136 HH 90 CYM 54 per 90 s capture.
+  audio vs libkss: chroma corr median 0.992, dominant pitch class equal 83.4%, flatness 0.081; spectrogram test/spectrogram_ours_vs_libkss.png
+  ticks: 14636 in 14636 frames (none lost); intro phase interval 16.59-16.69 ms; sketch phase tick at +14.82 ms after VBLANK
+        (p1-p99), grid deviation std 0.37 ms, p1/p99 -0.09/+1.07 ms; ~0.5% of ticks displaced up to ~8-9 ms (C-BIOS
+        keyscan tail after a long drawing frame), ~1.4% of ticks split by the next VBLANK ISR.
+  engine ISR max 15.06 ms (v1.1 15.03), ovr 0, max skip 0.
+  visual runtest final 3100: FM-PAC and no-FM both PASS, pictures 1+2 exact, residue PASS, 0.0751 s/line.
+  intro: fade-in 1.0013 s, hold 5.0064 s, fade-out 1.0013 s, frame period 16.688 ms (unchanged); engine starts 15.314 s
+        (v1.1 15.099 s) — clear runs with interrupts on.
+Media  sketch_music_preview.mp4 (77.9 s, 640x480, h264+aac, real-time capture from power-on)
+       song_in_b_msxmusic.wav / .mp3 (2 loops, 117.9 s, 2 s fade at the end)
+Test setup  openMSX C-BIOS_MSX2 + FMPAC device with fake signature ROM (real fmpac.rom unavailable); C-BIOS_MSX2+ internal.

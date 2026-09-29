@@ -9,3 +9,7 @@ column/verify/out/
 column/verify/clipframes/
 __pycache__/
 *.mp4
+music/sketch_music_s7.asm
+music/sketch_music_s7.sym
+music/sketch_music_s7.lst
+music/sketch_music_s7.rom
